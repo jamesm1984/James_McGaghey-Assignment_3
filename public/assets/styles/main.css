@@ -15,7 +15,7 @@ h1 {
 
 #chat_container {
   width: 1080px;
-  height: 100%;
+  height: 90%;
   margin: 0 auto;
   padding-top: 10px;
   overflow: hidden; }
@@ -47,8 +47,11 @@ h1 {
   width: 83%;
   height: 75px;
   background-color: #ecf0f1;
+  border: 1.5px solid black;
   border-radius: 5px;
-  margin: 10px 1%; }
+  margin: 10px 1%;
+  padding: 5px;
+  overflow: auto; }
 
 #chat_submit {
   display: inline-block;
