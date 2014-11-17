@@ -10,7 +10,6 @@ http = http.Server(app);
 var io = require('socket.io');
 io = io(http);
 var users=[];
-var messages=[];
 var id=0;
 //////////////////////////////////
 // Route our Assets
@@ -32,7 +31,7 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
 
-  console.log('A User Connected' );
+  console.log('A User Connected' + id);
 
   //add user to users array
   users.push({id:id});
@@ -44,8 +43,9 @@ io.on('connection', function(socket){
   io.emit('connected',id);
 
   // Handle Message Event
-  socket.on('submit', function(e){
-    console.log(e);
+  socket.on('message', function(text, userID){
+    io.emit('update', text, userID);
+    console.log(text, userID);
   });
 
 });
