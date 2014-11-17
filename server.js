@@ -32,10 +32,10 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
 
-  console.log('A User Connected');
+  console.log('A User Connected' );
 
   //add user to users array
-  users.push("User-"+id);
+  users.push({id:id});
 
   //Increment user id
   id = id + 1;
