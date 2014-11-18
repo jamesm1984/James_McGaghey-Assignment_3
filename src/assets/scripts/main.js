@@ -8,11 +8,15 @@ jQuery(function($) {
     // Create New Socket Connection using Socket.io
     var socket = io();
 
-    socket.on('connected',function(id){
+    socket.on('connected',function(id, users){
+      console.log(users);
+
 
       var message = "<li id='userID-" + id + "'>userID-" + id + "</li>";
       $('#users_list').append(message);
-
+      for(var i=0; i>users.length; i++){
+        console.log(i);
+      }
       if(firstConnection){
         userID=id;
         firstConnection=false;

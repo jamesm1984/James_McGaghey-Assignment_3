@@ -35,19 +35,13 @@ io.on('connection', function(socket){
   console.log('A User Connected' + id);
 
   //add user to users array
-  // users.push({id:id});
-  // users.push(socket);
-  // console.log(users);
+  users.push({id:id});
+  console.log(users);
 
 
   //emit to the client their id
-  io.emit('connected',id);
+  io.emit('connected',id, users);
 
-
-  // // Handles user connetions for adding to user list
-  // socket.on('userConnected', function(userID){
-  //   io.emit('userUpdate', userID);
-  // });
 
   // Handle Message Event
   socket.on('message', function(text, userID){
