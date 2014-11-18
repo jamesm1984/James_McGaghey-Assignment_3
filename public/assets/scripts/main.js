@@ -9,14 +9,18 @@ jQuery(function($) {
     var socket = io();
 
     socket.on('connected',function(id, users){
-      console.log(users);
 
-
-      var message = "<li id='userID-" + id + "' class='current_user'>userID-" + id + "</li>";
+      var message = "<li id='userID-" + id + "'>userID-" + id + "</li>";
       $('#users_list').append(message);
-      for(var i=0; i>users.length; i++){
-        console.log(i);
-      }
+
+      for(i=0; i < users.length; i++){
+        if (i!=id){
+          var message = "<li id='userID-" + i + "'>userID-" + i + "</li>";
+          $('#users_list').append(message);
+        };
+
+      };
+
       if(firstConnection){
         userID=id;
         firstConnection=false;

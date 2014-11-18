@@ -1,3 +1,9 @@
+$background: #2c3e50;
+$white: #ecf0f1;
+$current_user: #2ecc71;
+$even: #7f8c8d;
+$odd: #2980b9;
+
 *{
   box-sizing: border-box;
   margin:0;
@@ -7,32 +13,34 @@
 body, html {
   height:100%;
   font-family: sans-serif;
-  background-color:#2c3e50;
+  background-color:$background;
 }
 
-h1{
-  text-align: center;
-  padding-top:10px;
-  color:#ecf0f1;
-}
+
 
 #chat_container {
   width:1080px;
-  height:90%;
+  height:100%;
   margin:0 auto;
   padding-top:10px;
   overflow: hidden;
-}
+
+  h1{
+    text-align: center;
+    padding:10px 0;
+    color:#ecf0f1;
+  }
 
   #chat_window{
     display:inline-block;
     float:left;
     width:85%;
-    height:80%;
+    height:70%;
     min-height:400px;
     border: 1px solid black;
-    background-color:#ecf0f1;
+    background-color:$white;
     border-radius:5px;
+    padding:5px;
     overflow:auto;
   }
 
@@ -40,46 +48,50 @@ h1{
     display:inline-block;
     float:left;
     width:14%;
-    height:80%;
+    height:70%;
     min-height:400px;
     border: 1px solid black;
-    background-color:#ecf0f1;
+    background-color:$white;
     border-radius:5px;
     margin-left:1%;
     overflow:auto;
-  }
 
     ul{
       width:100%;
       height:auto;
-    }
 
-      li:nth-child(odd){
+      li{
         width:100%;
         height:25px;
         margin:5px 0;
         padding:5px;
         list-style:none;
-        background-color:#2980b9;
+        background-color:$odd;
       }
+
       li:nth-child(even){
         width:100%;
         height:25px;
         margin:5px 0;
         padding:5px;
         list-style:none;
-        background-color:#7f8c8d;
+        background-color:$even;
       }
+
       li:first-child{
-        background-color:#2ecc71;
+        background-color:$current_user;
       }
+
+    }
+
+  }
 
   #chat_message{
     display:inline-block;
     float:left;
     width:83%;
     height:75px;
-    background-color:#ecf0f1;
+    background-color:$white;
     border: 1.5px solid black;
     border-radius:5px;
     margin: 10px 1%;
@@ -92,7 +104,10 @@ h1{
     float:left;
     width:14%;
     height:45px;
-    background-color:#ecf0f1;
+    background-color:$white;
     border-radius:5px;
     margin: 40px 0 40px 1%;
   }
+
+}
+
