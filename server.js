@@ -35,7 +35,7 @@ io.on('connection', function(socket){
   console.log('A User Connected' + id);
 
   //add user to users array
-  users.push({id:id});
+  users.push({id:id, name:null});
   console.log(users);
 
 
@@ -45,8 +45,13 @@ io.on('connection', function(socket){
 
   // Handle Message Event
   socket.on('message', function(text, userID){
-    io.emit('update', text, userID);
-    console.log(text, userID);
+    io.emit('update', text, userID, users);
+  });
+
+  // Handle Message Event
+  socket.on('username', function(name, userID){
+    users[userID].name = name;
+    io.emit('update_username', id, users);
   });
 
   //Increment user id
