@@ -10,6 +10,7 @@ http = http.Server(app);
 var io = require('socket.io');
 io = io(http);
 var users=[];
+var messages;
 var id=0;
 //////////////////////////////////
 // Route our Assets
@@ -34,13 +35,19 @@ io.on('connection', function(socket){
   console.log('A User Connected' + id);
 
   //add user to users array
-  users.push({id:id});
+  // users.push({id:id});
+  // users.push(socket);
+  // console.log(users);
 
-  //Increment user id
-  id = id + 1;
 
   //emit to the client their id
   io.emit('connected',id);
+
+
+  // // Handles user connetions for adding to user list
+  // socket.on('userConnected', function(userID){
+  //   io.emit('userUpdate', userID);
+  // });
 
   // Handle Message Event
   socket.on('message', function(text, userID){
@@ -48,6 +55,8 @@ io.on('connection', function(socket){
     console.log(text, userID);
   });
 
+  //Increment user id
+  id = id + 1;
 });
 
 //////////////////////////////////
