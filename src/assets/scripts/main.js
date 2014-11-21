@@ -48,8 +48,9 @@ jQuery(function($) {
 						results.push(true);
 					}
 				}
+
 				filter = results.indexOf(true);
-				console.log(name.length);
+
 				if(filter >=0 && name.length>10 || filter >=0 || name.length>10 || name == ""){
 					name = window.prompt("It appears someone already has that username or username was over 10 characters please try again", "Username");
 					results=[];
@@ -109,8 +110,12 @@ jQuery(function($) {
 		}
 
 	});
-	socket.on('update_username',function(id, users){
-		$('#chat_window').append("<p class='changedNames'>userID-" + id + " has changed their name to " + users[id].name + "</p>");
+	socket.on('update_username',function(id, users, prevName){
+		if(prevName === null){
+			$('#chat_window').append("<p class='changedNames'>userID-" + id + " has changed thier username to "+ users[id].name +"</p>");
+		}else{
+			$('#chat_window').append("<p class='changedNames'>" + prevName + " has changed thier username to "+ users[id].name +"</p>");
+		};
 		$('#users_list').html('');
 
 		if (users[userID].name != null){
@@ -149,7 +154,6 @@ jQuery(function($) {
 				}
 
 				filter = results.indexOf(true);
-				console.log(name.length);
 
 				if(filter >=0 && name.length>10 || filter >=0 || name.length>10 || name == ""){
 					name = window.prompt("It appears someone already has that username or username was over 10 characters please try again", "Username");

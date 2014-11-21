@@ -25,7 +25,7 @@ app.get('/', function(req, res){
 io.on('connection', function(socket){
   console.log('A User Connected' + id);
 
-  // store
+  // stores user's id
   socket.uid = id;
 
   //add user to users array
@@ -45,16 +45,16 @@ io.on('connection', function(socket){
     io.emit('update', text, userID, users);
   });
 
-  // Handle Message Event
+  // Handle Username Change Event
   socket.on('username', function(name, userID){
+    var prevName = users[userID].name;
     users[userID].name = name;
-    io.emit('update_username', userID, users);
+    io.emit('update_username', userID, users, prevName);
   });
 
-  // Disconnect user
+  // Handle Disconnect Event
   socket.on('disconnect', function() {
 
-    console.log(socket.uid);
     users[socket.uid].status = "disconnected";
     io.emit('update_disconnect', socket.uid, users);
     console.log("user " + socket.uid + " has disconnected!");
